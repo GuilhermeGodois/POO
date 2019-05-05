@@ -70,3 +70,123 @@ Exemplo: TextField nome = new TextField();
 Exemplo:   - radius: double
 	   + circle()
 	   # aMethod(): void
+	  
+29R:
+| Cliente                                                                     |
+|-----------------------------------------------------------------------------|
+| -nome: String <br/>-email: String <br/>-telefone:String                     |
+| +setNome(nome: String) <br/>+setEmail(email: String) <br/>+setTelefone(telefone: String) <br/>+getNome(): String <br/>+getEmail(): String <br/>+getTelefone(): String |
+
+30R:
+```java
+public class Cliente {
+        
+    private String nome;
+    private String email;
+    private String telefone;
+        
+    public void Cliente(String iNome, String iEmail, String iTelefone) {
+        this.nome = iNome;
+        this.email = iEmail;
+        this.telefone = iTelefone;
+    }
+       
+    public void setNome(String novoNome) {
+        this.nome = novoNome;
+    }
+        
+    public void setEmail(String novoEmail) {
+        this.email = novoEmail;
+    }
+        
+    public void setTelefone(String novoTelefone) {
+        this.telefone = novoTelefone;
+    }
+        
+    public String getNome() {
+        return nome;
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+    
+    public String getTelefone() {
+        return telefone;
+    }
+        
+}
+```
+
+31R:
+Produto:
+```java
+public class Produto {
+        
+    private String nome;
+        
+    public Produto(String iNome) {
+        this.nome = iNome;
+    }
+       
+    public void setNome(String novoNome) {
+        this.nome = novoNome;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+}
+```
+Password:
+```java
+public class Password {
+        
+    private String value;
+        
+    public void Password(String iValue) {
+        this.value = iValue;
+    }
+       
+    public boolean isEqual(String eValue) {
+        return (value == eValue);
+    }
+}
+```
+Animal:
+```java
+public class Password {
+        
+    private boolean alive;
+        
+    public boolean isAlive() {
+        return alive;
+    }
+       
+    public boolean die() {
+        this.alive = false;
+    }
+}
+```
+
+32R:
+
+| Livro                                                                       |
+|-----------------------------------------------------------------------------|
+| -nome: String                     |
+| +setNome(nome: String) <br/>+getNome(): String |
+
+| ContaCorrente                                                               |
+|-----------------------------------------------------------------------------|
+| -saldo: double                     |
+| +sacar(valor: double): double <br/>+depositar(double valor) <br/>-recalcularSaldo() |
+
+| Par                                                               |
+|-----------------------------------------------------------------------------|
+| +chave: string <br/>+valor: string                     |
+| <br/> |
+
+| Impressora                                                               |
+|-----------------------------------------------------------------------------|
+| <br/> |
+| +imprimir(Documento documento) |

@@ -1,0 +1,72 @@
+1R: É uma coisa, entidade, qualquer coisa que possa imaginar
+e que tenha uma identidade.
+
+2R: Características = Peso, Modelo, Cor
+   Comportamentos = Parado, Ligado, Desligado
+   
+3R: Características são consideradas atributos e Comportamentos são considerados métodos
+
+4R: Desenvolver software utilizando objetos de maneira cooperativa através de troca de mensagens
+
+5R: A abstração pegar as principais características de um objeto, sem se apegar a características menores.
+exemplo: Animais > Anfíbios, Mamíferos, Carnívoros.
+
+6R: Encapsula características em comum de um grupo de objetos. Define os atributos e métodos que o objeto poderá possuir.
+
+7R: Camel Case. Exemplo: CarroAmarelo
+
+8R: Resposta 4: CarroEletrico
+
+9R: Camel Case. Exemplo: modoNoturno
+
+10R: Resposta 3: corDeFundo
+
+11R: Camel case. Exemplo: modoDiurno 
+
+12R: Resposta 1: estaVazio
+
+13R: Em POO um objeto e uma instância de uma classe, ele existe no momento que ele é instanciado na memória, e deixa de existir no momento em que ele é encerrado.
+
+14R: Criar um novo objeto
+
+15R: É um método ou operador especial utilizado para iniciar variáveis e outros objetos necessários, também pode disparar métodos de inicialização.
+    O construtor deve possuir o mesmo nome da Classe
+    Classe NomeCasa construtor NomeCasa   
+
+16R: O compilador o cria  automaticamente
+
+17R: Aluno a = new Aluno();
+
+18R: Mecanismo que possibilita restringir o acesso a variáveis e métodos da classe (ou até a própria classe).
+
+19R: Permitir livre acesso a um determinado atributo ou método
+
+20R: Os membros da classe definidos como não podem ser acessados ou usados por nenhuma outra classe.
+    Impedir que ninguém consiga modificar ou ler o atributo em questão
+
+21R: Utilizando modificadores de acesso
+Public class Aluno{ 
+   private String matricula;
+}
+
+22R: Obter informações. Esse tipo de método sempre retorna um valor
+Exemplo: TextField trazNome = new TextField();
+         traznome.setText(nome.getText());
+
+23R: Definir valores. Esse tipo de método geralmente não retorna valores
+Exemplo: TextField nome = new TextField();
+         nome.setText("FULANO");
+         
+24R: O Nome da Classe, Os Atributos e os Métodos.
+
+25R: Camel Case com a primeira letra minúscula.
+
+26R: Camel Case com a primeira letra minúscula.
+
+27R: Colocando um Símbolo como <<constructor>> atrás do construtor
+        Exemplo: <<constructor>> + GradeBook( name : string )
+
+28R: Os símbolos +, -, # são utilizados para denominar, respectivamente, modificadores de acesso público, privado e protegido.
+Exemplo:   - radius: double
+	   + circle()
+	   # aMethod(): void

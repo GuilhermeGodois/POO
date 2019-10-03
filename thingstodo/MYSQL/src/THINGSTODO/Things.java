@@ -24,7 +24,7 @@ public class Things {
 	}
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", Nome=" + Nome + ", Descricao=" + Descricao + "]";
+		return "Item [id=" + id + ", Nome=" + Nome + ", Descricao=" + Descricao + "]";
 	}
 
 }

@@ -7,11 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Pessoa Data Acess Object
- * @author leandersonandre
- *
- */
+
 public class DAO extends basicDAO{
 	
 
@@ -31,8 +27,8 @@ public class DAO extends basicDAO{
 	}
 	
 	/**
-	 * Deletar uma pessoa pelo id
-	 * @param pessoa
+	 * Deletar um item pelo id
+	 * 
 	 */
 	public void delete(Things things) {
 		

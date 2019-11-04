@@ -27,12 +27,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import javafx.scene.control.ComboBox;
+
+import javax.swing.JComboBox;
+
 public class Menu {
 
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		frame.setTitle("Conversor ");
-		frame.setSize(400,400);
+		frame.setSize(450,400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 	
@@ -63,7 +67,7 @@ public class Menu {
 		
 		menuArquivo.add(item);
 		
-		JMenu menuConfigs = new JMenu("Configuraçoes");
+		JMenu menuConfigs = new JMenu("ConfiguraÃ§oes");
 		JMenuItem limpcamp = new JMenuItem("Limpar Campos",KeyEvent.VK_A);
 		JCheckBoxMenuItem emoedas = new JCheckBoxMenuItem("Exibir Moedas");
 		emoedas.setSelected(true);
@@ -118,7 +122,7 @@ public class Menu {
 		tabPane.addTab("Temperatura",painelTemperatura);
 		tabPane.addTab("Comprimento",painelComprimento);
 		
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		menuConfigs.add(limpcamp);
 		menuConfigs.addSeparator();
 		menuConfigs.add(emoedas);
@@ -146,54 +150,83 @@ public class Menu {
 	}
 	private static JPanel CriarPainelMoeda() {
 		JPanel panel = new JPanel();
-		// Seleciona a cor do painel
 		panel.setBackground(Color.white);
-		// Retira o gerenciador de layout
 		panel.setLayout(null);
-		// Adiciona bordas
 		panel.setBorder(BorderFactory.createCompoundBorder(
-				// Margem
 				BorderFactory.createEmptyBorder(20, 20, 20, 20)
-				// Com titulo
-			   ,BorderFactory.createTitledBorder("Login")));
+			   ,BorderFactory.createTitledBorder("Moedas")));
+		String origem [] = {"Reais","Dolares","Euros"};
+		JComboBox<String> comboBoxOrigem = new JComboBox<String>(origem);
+		comboBoxOrigem.setBounds(80, 65, 100, 30);
 		
-				// Campo texto com 10 caracteres
-				JTextField text = new JTextField(10);
-				text.setBounds(140, 40, 125, 30);
-				JTextField text2 = new JTextField(10);
-				text2.setBounds(140, 80, 125, 30);
-				JTextField text3 = new JTextField(10);
-				text3.setBounds(140, 80, 125, 30);
-				JLabel label = new JLabel("Usu�rio:");
-				JLabel label2 = new JLabel("Senha:");
-				JLabel label3 = new JLabel("Esqueci minha senha");
+		String destino [] = {"Reais","Dolares","Euros"};
+		JComboBox<String> comboBoxDestino = new JComboBox<String>(destino);
+		comboBoxDestino.setBounds(300, 65, 100, 30);
+		
+		JLabel lblorigem = new JLabel("De: ");
+		lblorigem.setForeground(Color.BLACK);
+		lblorigem.setBounds(35, 65, 80, 30);
+		
+		JTextField txtorigem = new JTextField(200);
+		txtorigem.setBounds(80, 125, 100, 30);
+		  
+		JLabel lbldestino = new JLabel("Para: ");
+		lbldestino.setForeground(Color.BLACK);
+		lbldestino.setBounds(245, 65, 80, 30);
+		
+		JTextField txtdestino = new JTextField(200);
+		txtdestino.setBounds(300, 125, 100, 30);
+		txtdestino.setEditable(false);
+					
+		JButton bttnconverter = new JButton("Converter!!");
+		bttnconverter.setBounds(300, 185, 100, 30);
+		
+		bttnconverter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String moedade = (String) comboBoxOrigem.getSelectedItem();
+				String moedapara = (String) comboBoxDestino.getSelectedItem();
 				
+				double valorde = Double.parseDouble(txtorigem.getText());
+				double valorpara = 0;
+					
+				if(moedade.equals("Reais")&& moedapara.equals("Dolares")) {
+					valorpara = valorde / 3.99;
+				}
 				
+				if(moedade.equals("Dolares")&& moedapara.equals("Reais")) {
+					valorpara = valorde * 3.99;
+				}
 				
-				// Adicionar Checkbox
-				JTextArea textArea = new JTextArea();
-				JCheckBox r1 = new JCheckBox("Manter acessado");
-				r1.setBounds(140, 150, 125, 30);
-				r1.setBackground(Color.white);
+				if(moedade.equals("Reais")&& moedapara.equals("Euros")) {
+					valorpara = valorde / 4.47;
+				}
 				
-				// Cor do texto
-				label.setForeground(Color.BLACK);
-				label.setBounds(80, 40, 80, 30);
-				label2.setForeground(Color.BLACK);
-				label2.setBounds(80, 80, 80, 30);
-				label3.setForeground(Color.decode("#800080"));
-				label3.setBounds(150, 170, 125, 30);
-				JButton button = new JButton("Acessar");
-				button.setBounds(140, 120, 125, 30);
-	
-				// Adicionar componentes no painel
-				panel.add(text);
-				panel.add(text2);
-				panel.add(button);
-				panel.add(label);
-				panel.add(label2);
-				panel.add(label3);
-				panel.add(r1);
+				if(moedade.equals("Euros")&& moedapara.equals("Reais")) {
+					valorpara = valorde * 4.47;
+				}
+				
+				if(moedade.equals("Dolares")&& moedapara.equals("Euros")) {
+					valorpara = valorde / 1.12;
+				}
+				
+				if(moedade.equals("Euros")&& moedapara.equals("Dolares")) {
+					valorpara = valorde * 1.12;
+				}
+				
+				txtdestino.setText(String.format("%.2f", valorpara));		
+				
+			}
+		});
+		
+		panel.add(lblorigem);
+		panel.add(lbldestino);
+		panel.add(comboBoxOrigem);
+		panel.add(comboBoxDestino);
+		panel.add(txtorigem);
+		panel.add(txtdestino);
+		panel.add(bttnconverter);
 				
 				//Adiciona o painel no frame
 				return(panel);
@@ -210,48 +243,87 @@ public class Menu {
 				// Margem
 				BorderFactory.createEmptyBorder(20, 20, 20, 20)
 				// Com titulo
-			   ,BorderFactory.createTitledBorder("Login")));
+			   ,BorderFactory.createTitledBorder("Temperaturas")));
 		
-				// Campo texto com 10 caracteres
-				JTextField text = new JTextField(10);
-				text.setBounds(140, 40, 125, 30);
-				JTextField text2 = new JTextField(10);
-				text2.setBounds(140, 80, 125, 30);
-				JTextField text3 = new JTextField(10);
-				text3.setBounds(140, 80, 125, 30);
-				JLabel label = new JLabel("Usu�rio:");
-				JLabel label2 = new JLabel("Senha:");
-				JLabel label3 = new JLabel("Esqueci minha senha");
+		String origem [] = {"Celsius","Fahrenheit","Kelvin"};
+		
+		JComboBox<String> comboBoxOrigem = new JComboBox<String>(origem);
+		comboBoxOrigem.setBounds(80, 65, 100, 30);
+
 				
+		String destino [] = {"Celsius","Fahrenheit","Kelvin"};
 				
+		JComboBox<String> comboBoxDestino = new JComboBox<String>(destino);
+		comboBoxDestino.setBounds(300, 65, 100, 30);
+
+		
+		JLabel lblorigem = new JLabel("De: ");
+		lblorigem.setForeground(Color.BLACK);
+		lblorigem.setBounds(35, 65, 80, 30);
+		
+		JTextField txtorigem = new JTextField(200);
+		txtorigem.setBounds(80, 125, 100, 30);
+		  
+		JLabel lbldestino = new JLabel("Para: ");
+		lbldestino.setForeground(Color.BLACK);
+		lbldestino.setBounds(245, 65, 80, 30);
+		
+		JTextField txtdestino = new JTextField(200);
+		txtdestino.setBounds(300, 125, 100, 30);
+		txtdestino.setEditable(false);
+					
+		JButton bttnconverter = new JButton("Converter!!");
+		bttnconverter.setBounds(300, 185, 100, 30);
+		
+		// Ação do Botão Converter
+		
+		bttnconverter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String moedade = (String) comboBoxOrigem.getSelectedItem();
+				String moedapara = (String) comboBoxDestino.getSelectedItem();
 				
-				// Adicionar Checkbox
-				JTextArea textArea = new JTextArea();
-				JCheckBox r1 = new JCheckBox("Manter acessado");
-				r1.setBounds(140, 150, 125, 30);
-				r1.setBackground(Color.white);
+				double valorde = Double.parseDouble(txtorigem.getText());
+				double valorpara = 0;
+					
+				if(moedade.equals("Celsius")&& moedapara.equals("Fahrenheit")) {
+					valorpara = (valorde * 9.0/5.0) + 32.0;
+				}
 				
-				// Cor do texto
-				label.setForeground(Color.BLACK);
-				label.setBounds(80, 40, 80, 30);
-				label2.setForeground(Color.BLACK);
-				label2.setBounds(80, 80, 80, 30);
-				label3.setForeground(Color.decode("#800080"));
-				label3.setBounds(150, 170, 125, 30);
-				JButton button = new JButton("Acessar");
-				button.setBounds(140, 120, 125, 30);
-	
-				// Adicionar componentes no painel
-				panel.add(text);
-				panel.add(text2);
-				panel.add(button);
-				panel.add(label);
-				panel.add(label2);
-				panel.add(label3);
-				panel.add(r1);
+				if(moedade.equals("Fahrenheit")&& moedapara.equals("Celsius")) {
+					valorpara = (valorde - 32.0) * 5.0/9.0;
+				}
 				
-				//Adiciona o painel no frame
-				return(panel);
+				if(moedade.equals("Celsius")&& moedapara.equals("Kelvin")) {
+					valorpara = valorde + 273.15;
+				}
+				
+				if(moedade.equals("Kelvin")&& moedapara.equals("Celsius")) {
+					valorpara = valorde - 273.15;
+				}
+				
+				if(moedade.equals("Fahrenheit")&& moedapara.equals("Kelvin")) {
+					valorpara = (valorde - 32.0) * 5.0/9.0 + 273.15;
+				}
+				
+				if(moedade.equals("Kelvin")&& moedapara.equals("Fahrenheit")) {
+					valorpara = (valorde - 273.15) * 9.0/5.0 + 32;
+				}
+				
+				txtdestino.setText(String.format("%.2f", valorpara));		
+				
+			}
+		});
+		
+		panel.add(lblorigem);
+		panel.add(lbldestino);
+		panel.add(comboBoxOrigem);
+		panel.add(comboBoxDestino);
+		panel.add(txtorigem);
+		panel.add(txtdestino);
+		panel.add(bttnconverter);				
+		return(panel);
 }
 
 	private static JPanel CriarPainelComprimento() {
@@ -267,46 +339,121 @@ public class Menu {
 				// Com titulo
 			   ,BorderFactory.createTitledBorder("Login")));
 		
-				// Campo texto com 10 caracteres
-				JTextField text = new JTextField(10);
-				text.setBounds(140, 40, 125, 30);
-				JTextField text2 = new JTextField(10);
-				text2.setBounds(140, 80, 125, 30);
-				JTextField text3 = new JTextField(10);
-				text3.setBounds(140, 80, 125, 30);
-				JLabel label = new JLabel("Usu�rio:");
-				JLabel label2 = new JLabel("Senha:");
-				JLabel label3 = new JLabel("Esqueci minha senha");
+		String origem [] = {"quilômetro","metro","centímetro","milímetro"};
+		
+		JComboBox<String> comboBoxOrigem = new JComboBox<String>(origem);
+		comboBoxOrigem.setBounds(80, 65, 100, 30);
+		// comboBoxOrigem.setSelectedIndex(-1);
+						
+		// Fim Bloco JComboBox Comprimento Origem  
+		
+		// Início Bloco JComboBox Comprimento Destino
 				
+		String destino [] = {"quilômetro","metro","centímetro","milímetro"};
 				
+		JComboBox<String> comboBoxDestino = new JComboBox<String>(destino);
+		comboBoxDestino.setBounds(300, 65, 100, 30);
+		// comboBoxDestino.setSelectedIndex(-1);
+							
+		// Fim Bloco JComboBox Comprimento Destino 
+		
+		JLabel lblorigem = new JLabel("De: ");
+		lblorigem.setForeground(Color.BLACK);
+		lblorigem.setBounds(35, 65, 80, 30);
+		
+		JTextField txtorigem = new JTextField(200);
+		txtorigem.setBounds(80, 125, 100, 30);
+		  
+		JLabel lbldestino = new JLabel("Para: ");
+		lbldestino.setForeground(Color.BLACK);
+		lbldestino.setBounds(245, 65, 80, 30);
+		
+		JTextField txtdestino = new JTextField(200);
+		txtdestino.setBounds(300, 125, 100, 30);
+		txtdestino.setEditable(false);
+					
+		JButton bttnconverter = new JButton("Converter!!");
+		bttnconverter.setBounds(300, 185, 100, 30);
+		
+		// Ação do Botão Converter
+		
+		bttnconverter.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String moedade = (String) comboBoxOrigem.getSelectedItem();
+				String moedapara = (String) comboBoxDestino.getSelectedItem();
 				
-				// Adicionar Checkbox
-				JTextArea textArea = new JTextArea();
-				JCheckBox r1 = new JCheckBox("Manter acessado");
-				r1.setBounds(140, 150, 125, 30);
-				r1.setBackground(Color.white);
+				double valorde = Double.parseDouble(txtorigem.getText());
+				double valorpara = 0;
+					
+				if(moedade.equals("quilômetro")&& moedapara.equals("metro")) {
+					valorpara = valorde * 1000;
+				}
 				
-				// Cor do texto
-				label.setForeground(Color.BLACK);
-				label.setBounds(80, 40, 80, 30);
-				label2.setForeground(Color.BLACK);
-				label2.setBounds(80, 80, 80, 30);
-				label3.setForeground(Color.decode("#800080"));
-				label3.setBounds(150, 170, 125, 30);
-				JButton button = new JButton("Acessar");
-				button.setBounds(140, 120, 125, 30);
-	
-				// Adicionar componentes no painel
-				panel.add(text);
-				panel.add(text2);
-				panel.add(button);
-				panel.add(label);
-				panel.add(label2);
-				panel.add(label3);
-				panel.add(r1);
+				if(moedade.equals("metro")&& moedapara.equals("quilômetro")) {
+					valorpara = valorde / 1000;
+				}
+				
+				if(moedade.equals("quilômetro")&& moedapara.equals("centímetro")) {
+					valorpara = valorde * 100000;
+				}
+				
+				if(moedade.equals("centímetro")&& moedapara.equals("quilômetro")) {
+					valorpara = valorde / 100000;
+				}
+				
+				if(moedade.equals("quilômetro")&& moedapara.equals("milímetro")) {
+					valorpara = valorde * 1000000;
+				}
+				
+				if(moedade.equals("milímetro")&& moedapara.equals("quilômetro")) {
+					valorpara = valorde / 1000000;
+				}
+				
+				if(moedade.equals("metro")&& moedapara.equals("centímetro")) {
+					valorpara = valorde * 100;
+				}
+				
+				if(moedade.equals("centímetro")&& moedapara.equals("metro")) {
+					valorpara = valorde / 100;
+				}
+				
+				if(moedade.equals("metro")&& moedapara.equals("milímetro")) {
+					valorpara = valorde * 1000;
+				}
+				
+				if(moedade.equals("milímetro")&& moedapara.equals("metro")) {
+					valorpara = valorde / 1000;
+				}
+				
+				if(moedade.equals("centímetro")&& moedapara.equals("milímetro")) {
+					valorpara = valorde * 10;
+				}
+				
+				if(moedade.equals("milímetro")&& moedapara.equals("centímetro")) {
+					valorpara = valorde / 10;
+				}
+				
+				txtdestino.setText(String.format("%.2f", valorpara));		
+				
+			}
+		});
+		
+		// Fim Ação Botão Converter
+		
+		// Adiciona os itens no frame
+		panel.add(lblorigem);
+		panel.add(lbldestino);
+		panel.add(comboBoxOrigem);
+		panel.add(comboBoxDestino);
+		panel.add(txtorigem);
+		panel.add(txtdestino);
+		panel.add(bttnconverter);
 				
 				//Adiciona o painel no frame
 				return(panel);
 }
 }
+
 

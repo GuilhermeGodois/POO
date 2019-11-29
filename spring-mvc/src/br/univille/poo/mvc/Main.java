@@ -1,19 +1,19 @@
 package br.univille.poo.mvc;
 
-import br.univille.poo.mvc.control.CadastroPessoaControl;
-import br.univille.poo.mvc.model.PessoaModel;
-import br.univille.poo.mvc.view.CadastroPessoaView;
+import br.univille.poo.mvc.control.CadastroVeiculoControl;
+import br.univille.poo.mvc.model.VeiculoModel;
+import br.univille.poo.mvc.view.CadastroVeiculoView;
 
 public class Main {
 
 	public static void main(String[] args) {
-		PessoaModel p = new PessoaModel();
-		p.setCpf("456.455.454-31");
-		p.setEmail("fulano@gmail.com");
-		p.setNome("Fulano");
+		VeiculoModel p = new VeiculoModel();
+		p.setMarca("FIAT");
+		p.setPlaca("985-HDFF");
+		p.setNome("UNO");
 
 		
-		CadastroPessoaControl control = new CadastroPessoaControl(new CadastroPessoaView(),p);
+		CadastroVeiculoControl control = new CadastroVeiculoControl(new CadastroVeiculoView(),p);
 		control.exibirTela();
 	}
 
